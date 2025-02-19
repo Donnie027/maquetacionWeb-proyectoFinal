@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import './style.css';
 
-const planetaDesktop = 'src/assets/inicio/img/desktop/planetaDesktop.png';
-const superficieDesktop = 'src/assets/inicio/img/desktop/superficieDesktop.png';
-const fondoDesktop = 'src/assets/inicio/img/desktop/fondoDesktop.png';
+import planetaDesktop from '../../assets/inicio/img/desktop/planetaDesktop.png';
+import superficieDesktop from '../../assets/inicio/img/desktop/superficieDesktop.png';
+import fondoDesktop from '../../assets/inicio/img/desktop/fondoDesktop.png';
 
-const planetaMobile = 'src/assets/inicio/img/mobile/planetaMobile.png';
-const superficieMobile = 'src/assets/inicio/img/mobile/superficieMobile.png';
-const fondoMobile = 'src/assets/inicio/img/mobile/fondoMobile.png';
+import planetaMobile from '../../assets/inicio/img/mobile/planetaMobile.png';
+import superficieMobile from '../../assets/inicio/img/mobile/superficieMobile.png';
+import fondoMobile from '../../assets/inicio/img/Mobile/fondoMobile.png';
 
 export const Inicio = () => {
   const [scrollY, setScrollY] = useState(0);
