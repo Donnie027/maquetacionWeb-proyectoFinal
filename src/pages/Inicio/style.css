@@ -42,3 +42,19 @@ section {
 .supSection {
     height: 100svh;
 }
+
+#planeta {
+    left: 0;
+}
+
+#superficie {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    will-change: transform;
+    transition: transform 0.5s ease-out;
+    object-fit: cover;
+  }
+  

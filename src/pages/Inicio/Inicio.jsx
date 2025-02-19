@@ -65,11 +65,11 @@ export const Inicio = () => {
           src={isMobile ? planetaMobile : planetaDesktop}
           alt="Planeta"
           loading="lazy"
+          decoding="async"
           style={{
-            transform: `scale(${scalePlanet}%)`,
-            left: '0',
-            bottom: `${positionYPlanet}svh`,
+            transform: `scale(${scalePlanet / 100})`,
             transformOrigin: 'left',
+            bottom: `${positionYPlanet}svh`,
           }}
         />
 
@@ -78,8 +78,9 @@ export const Inicio = () => {
           src={isMobile ? superficieMobile : superficieDesktop}
           alt="Superficie"
           loading="lazy"
+          decoding="async"
           style={{
-            transform: `translateY(${moveSurface / 25}%)`,
+            transform: `translateY(${moveSurface / 25}svh)`,
           }}
         />
       </section>
