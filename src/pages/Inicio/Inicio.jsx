@@ -55,7 +55,7 @@ export const Inicio = () => {
     // Establecer un retraso para hacer el cambio menos brusco
     setTimeout(() => {
       setIsLoading(false);  // Desactiva el loading después de 0.5s
-    }, 500);  // 500ms = 0.5 segundos
+    }, 1000);  
   };
 
   // Calcular el tamaño de la imagen basado en la posición del scroll
