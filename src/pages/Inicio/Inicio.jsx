@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './style.css';
 
 import planetaDesktop from '../../assets/inicio/img/desktop/planetaDesktop.webp';
@@ -10,91 +10,81 @@ import superficieMobile from '../../assets/inicio/img/mobile/superficieMobile.we
 import fondoMobile from '../../assets/inicio/img/Mobile/fondoMobile.webp';
 
 export const Inicio = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const scrollY = useRef(0); // Usa useRef para evitar renders innecesarios
+  const [scrollPos, setScrollPos] = useState(0); // Solo para cambios visuales
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Cambia el estado a true o false dependiendo del tamaño
+      setIsMobile(window.innerWidth <= 768);
     };
-
-    // Añade el event listener para el cambio de tamaño
     window.addEventListener('resize', handleResize);
-
-    // Limpia el event listener cuando el componente se desmonte
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrollY(window.scrollY); // Actualiza el estado con la posición del scroll
-      console.log('Posición del scroll Y:', window.scrollY); // Imprime la posición en la consola
+      scrollY.current = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollPos(scrollY.current); // Actualiza solo en el frame adecuado
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    // Añade el event listener para el scroll
     window.addEventListener('scroll', handleScroll);
-
-    // Limpia el event listener cuando el componente se desmonte
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Calcular el tamaño de la imagen basado en la posición del scroll
-  const porsentajeTotalScroll = ((scrollY * 100) / window.innerHeight)
+  const porsentajeTotalScroll = (scrollPos * 100) / window.innerHeight;
 
-  const scalePlanet = 55 + (45 * porsentajeTotalScroll / 100);
-  const positionYPlanet = -25 - ( -25 * porsentajeTotalScroll / 100 )
-
-  const moveSurface = window.innerHeight - scrollY;
-
-  const scaleFondo = 1.5 - (.5 * porsentajeTotalScroll / 100);
+  const scalePlanet = 55 + (45 * porsentajeTotalScroll) / 100;
+  const positionYPlanet = -25 - (-25 * porsentajeTotalScroll) / 100;
+  const moveSurface = window.innerHeight - scrollPos;
+  const scaleFondo = 1.5 - 0.5 * (porsentajeTotalScroll / 100);
 
   return (
     <div className="inicioContenedor">
-      <section className="fondoParallax"
+      <section
+        className="fondoParallax"
         style={{
           background: `url(${isMobile ? fondoMobile : fondoDesktop}) no-repeat center/cover`,
           transform: `scale(${scaleFondo})`,
-          transition: 'transform 0.5s ease-out'
         }}
       ></section>
-      <section className='parallax'>
+
+      <section className="parallax">
         <img
-          id='planeta'
+          id="planeta"
           src={isMobile ? planetaMobile : planetaDesktop}
           alt="Planeta"
-          // style={{
-          //   transform: `scale(${scalePlanet})`,
-          //   left: '0',         
-          //   bottom: '', 
-          //   transformOrigin: 'left', 
-          //   transition: 'transform 0.5s ease-out', 
-          // }}
+          loading="lazy"
           style={{
-            transform: `scale(${ scalePlanet }%)`,
+            transform: `scale(${scalePlanet}%)`,
             left: '0',
             bottom: `${positionYPlanet}vh`,
             transformOrigin: 'left',
-            transition: 'transform 0.5s ease-out'
           }}
         />
-        {
-          console.log(scaleFondo)
-        }
+
         <img
-          id='superficie'
+          id="superficie"
           src={isMobile ? superficieMobile : superficieDesktop}
           alt="Superficie"
+          loading="lazy"
           style={{
-            transform: `translateY(${moveSurface/25}%)`,
-            transition: 'all .5s ease-in-out'
+            transform: `translateY(${moveSurface / 25}%)`,
           }}
         />
       </section>
-      <section className='supSection'></section>
+
+      <section className="supSection"></section>
     </div>
   );
 };

@@ -10,8 +10,6 @@
 }
 
 section {
-    height: 100dvh;
-    position: relative;
     width: 100%;
 }
 
@@ -19,12 +17,17 @@ section {
     position: fixed;
     z-index: -1;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    will-change: transform;
 }
 
 .parallax {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100dvh;
 }
 
 .parallax img {
@@ -32,4 +35,10 @@ section {
     height: 100%;
     object-fit: cover;
     position: fixed;
+    will-change: transform;
+}
+
+
+.supSection {
+    height: 100dvh;
 }
