@@ -68,7 +68,7 @@ export const Inicio = () => {
           style={{
             transform: `scale(${scalePlanet}%)`,
             left: '0',
-            bottom: `${positionYPlanet}vh`,
+            bottom: `${positionYPlanet}svh`,
             transformOrigin: 'left',
           }}
         />
