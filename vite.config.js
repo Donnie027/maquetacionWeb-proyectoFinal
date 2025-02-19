@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   // base:'https://donnie027.github.io/maquetacionWeb-proyectoFinal/'
-  base:'/proyectoFinal/'
+  base:'/maquetacionWeb-proyectoFinal/'
 })
