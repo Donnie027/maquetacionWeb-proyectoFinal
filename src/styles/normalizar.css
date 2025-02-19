@@ -1,0 +1,48 @@
+/* Css Reset */
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif;}
+*, *::before, *::after { box-sizing: border-box; box-sizing: inherit;}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1 rem = 10px */
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+input, button, textarea, select { font: inherit; }
+button {
+    border: none;
+    outline: none;
+    background: white;
+}
+
+p { text-wrap: pretty; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+
+img, video, svg { height: auto; max-width: 100%; }
+
+a { text-decoration: none; }
+
+ul { list-style: none; }
+li { list-style: none; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(21, 21, 21);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    text-align: center;
+    color: var(--ColorTexto-uno);
+}
+
+@media (prefers-reduced-motion: reduce)  {
+    *, *::before, *::after { 
+        animation-duration: 0.01ms !important; 
+        animation-iteration-count: 1 !important; 
+        transition-duration: 0.01ms !important; 
+        scroll-behavior: auto !important;
+        transition: none;
+    }
+}
