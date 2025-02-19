@@ -9,10 +9,14 @@ import planetaMobile from '../../assets/inicio/img/mobile/planetaMobile.webp';
 import superficieMobile from '../../assets/inicio/img/mobile/superficieMobile.webp';
 import fondoMobile from '../../assets/inicio/img/Mobile/fondoMobile.webp';
 
+import { Loader } from '../../loader/Loader';
+
 export const Inicio = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const scrollY = useRef(0); // Usa useRef para evitar renders innecesarios
   const [scrollPos, setScrollPos] = useState(0); // Solo para cambios visuales
+  const [isLoading, setIsLoading] = useState(true); // Estado para manejar el loading
+  const [isBackgroundLoaded, setIsBackgroundLoaded] = useState(false); // Estado para el fondo cargado
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,6 +45,19 @@ export const Inicio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleImagesLoad = () => {
+    setIsLoading(false);  // Cambia el estado de loading a false cuando las imágenes se cargan
+  };
+
+  const handleBackgroundLoad = () => {
+    setIsBackgroundLoaded(true);  // Cambia el estado cuando el fondo se carga
+
+    // Establecer un retraso para hacer el cambio menos brusco
+    setTimeout(() => {
+      setIsLoading(false);  // Desactiva el loading después de 0.5s
+    }, 500);  // 500ms = 0.5 segundos
+  };
+
   // Calcular el tamaño de la imagen basado en la posición del scroll
   const porsentajeTotalScroll = (scrollPos * 100) / window.innerHeight;
 
@@ -51,6 +68,10 @@ export const Inicio = () => {
 
   return (
     <div className="inicioContenedor">
+      {isLoading && <Loader />} {/* Muestra el loader mientras se cargan las imágenes */}
+      {/* Fondo invisible para rastrear la carga del fondo */}
+      {!isBackgroundLoaded && <img src={isMobile ? fondoMobile : fondoDesktop} alt="Fondo" onLoad={handleBackgroundLoad} style={{ display: 'none' }} />}
+      
       <section
         className="fondoParallax"
         style={{
@@ -66,6 +87,7 @@ export const Inicio = () => {
           alt="Planeta"
           loading="lazy"
           decoding="async"
+          onLoad={handleImagesLoad}
           style={{
             transform: `scale(${scalePlanet / 100})`,
             transformOrigin: 'left',
@@ -79,6 +101,7 @@ export const Inicio = () => {
           alt="Superficie"
           loading="lazy"
           decoding="async"
+          onLoad={handleImagesLoad}
           style={{
             transform: `translateY(${moveSurface / 25}svh)`,
           }}
