@@ -126,7 +126,7 @@ export const Inicio = () => {
               className={`
                 cajaBotones-inicio
                 animate__animated
-                ${porsentajeTotalScroll >= 75 ? "animate__backInUp" : "animate__backOutDown"}
+                ${porsentajeTotalScroll >= 80 ? "animate__backInUp" : "animate__backOutDown"}
               `}
             >
               <Link to="">
