@@ -7,6 +7,7 @@ export const PageRoutes = () => {
     <Routes>
 
       <Route path="/inicio" element={<Inicio/>}/>
+      
 
       <Route path="/" element={<Navigate to ="/inicio"/>}/>
       <Route path="*" element={<Navigate to ="/inicio"/>}/>

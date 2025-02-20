@@ -47,19 +47,20 @@ export const Inicio = () => {
   // Agregar un useEffect que se dispara cuando la página se ha cargado completamente
   useEffect(() => {
     const handleWindowLoad = () => {
-      // Esto se ejecuta cuando la página está completamente cargada (imágenes, scripts, etc.)
       setTimeout(() => {
-        setIsLoading(false); // Deja de mostrar el loader después de medio segundo (para suavizar la transición)
-      }, 700);
+        setIsLoading(false);
+      }, 700); // Suaviza la transición
     };
-
-    window.addEventListener('load', handleWindowLoad);
-
-    // Limpia el event listener cuando el componente se desmonta
-    return () => {
-      window.removeEventListener('load', handleWindowLoad);
-    };
+  
+    if (document.readyState === 'complete') {
+      handleWindowLoad();
+    } else {
+      window.addEventListener('load', handleWindowLoad);
+    }
+  
+    return () => window.removeEventListener('load', handleWindowLoad);
   }, []);
+  
 
   // Calcular el tamaño de la imagen basado en la posición del scroll
   const porsentajeTotalScroll = (scrollPos * 100) / window.innerHeight;
@@ -88,6 +89,7 @@ export const Inicio = () => {
           alt="Planeta"
           loading="lazy"
           decoding="async"
+          onLoad={() => setIsLoading(false)}
           style={{
             transform: `scale(${scalePlanet / 100})`,
             transformOrigin: 'left',
@@ -101,6 +103,7 @@ export const Inicio = () => {
           alt="Superficie"
           loading="lazy"
           decoding="async"
+          onLoad={() => setIsLoading(false)}
           style={{
             transform: `translateY(${moveSurface / 25}svh)`,
           }}
