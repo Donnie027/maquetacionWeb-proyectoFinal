@@ -16,7 +16,6 @@ export const Inicio = () => {
   const scrollY = useRef(0); // Usa useRef para evitar renders innecesarios
   const [scrollPos, setScrollPos] = useState(0); // Solo para cambios visuales
   const [isLoading, setIsLoading] = useState(true); // Estado para manejar el loading
-  const [isBackgroundLoaded, setIsBackgroundLoaded] = useState(false); // Estado para el fondo cargado
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,18 +44,22 @@ export const Inicio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleImagesLoad = () => {
-    setIsLoading(false);  // Cambia el estado de loading a false cuando las imágenes se cargan
-  };
+  // Agregar un useEffect que se dispara cuando la página se ha cargado completamente
+  useEffect(() => {
+    const handleWindowLoad = () => {
+      // Esto se ejecuta cuando la página está completamente cargada (imágenes, scripts, etc.)
+      setTimeout(() => {
+        setIsLoading(false); // Deja de mostrar el loader después de medio segundo (para suavizar la transición)
+      }, 700);
+    };
 
-  const handleBackgroundLoad = () => {
-    setIsBackgroundLoaded(true);  // Cambia el estado cuando el fondo se carga
+    window.addEventListener('load', handleWindowLoad);
 
-    // Establecer un retraso para hacer el cambio menos brusco
-    setTimeout(() => {
-      setIsLoading(false);  // Desactiva el loading después de 0.5s
-    }, 1000);  
-  };
+    // Limpia el event listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('load', handleWindowLoad);
+    };
+  }, []);
 
   // Calcular el tamaño de la imagen basado en la posición del scroll
   const porsentajeTotalScroll = (scrollPos * 100) / window.innerHeight;
@@ -68,9 +71,7 @@ export const Inicio = () => {
 
   return (
     <div className="inicioContenedor">
-      {isLoading && <Loader />} {/* Muestra el loader mientras se cargan las imágenes */}
-      {/* Fondo invisible para rastrear la carga del fondo */}
-      {!isBackgroundLoaded && <img src={isMobile ? fondoMobile : fondoDesktop} alt="Fondo" onLoad={handleBackgroundLoad} style={{ display: 'none' }} />}
+      {isLoading && <Loader />} {/* Muestra el loader mientras se carga la página */}
       
       <section
         className="fondoParallax"
@@ -87,7 +88,6 @@ export const Inicio = () => {
           alt="Planeta"
           loading="lazy"
           decoding="async"
-          onLoad={handleImagesLoad}
           style={{
             transform: `scale(${scalePlanet / 100})`,
             transformOrigin: 'left',
@@ -101,7 +101,6 @@ export const Inicio = () => {
           alt="Superficie"
           loading="lazy"
           decoding="async"
-          onLoad={handleImagesLoad}
           style={{
             transform: `translateY(${moveSurface / 25}svh)`,
           }}
