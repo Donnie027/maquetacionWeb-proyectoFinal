@@ -43,6 +43,7 @@ section {
 .supSection {
     height: 100svh;
     color: var(--blanco);
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
@@ -56,6 +57,7 @@ section {
 .supSection h3 {
     font-family: 'Morris';
 }
+
 
 .cajaBotones-inicio {
     background: rgba(245, 245, 245, 0.798);

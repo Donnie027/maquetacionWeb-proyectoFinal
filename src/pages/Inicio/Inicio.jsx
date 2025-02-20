@@ -109,6 +109,11 @@ export const Inicio = () => {
             transform: `translateY(${moveSurface / 25}svh)`,
           }}
         />
+
+
+        <div className="cajaPresentacion">
+          
+        </div>
       </section>
 
       <section className="supSection">
