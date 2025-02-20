@@ -118,25 +118,26 @@ export const Inicio = () => {
 
       <section className="supSection">
 
-          <h2>Proyecto Final</h2>
-          <h3>DONNIE</h3>
+          <div className="contenedor-supSection">
+            <h2>Proyecto Final</h2>
+            <h3>DONNIE</h3>
 
-          <div 
-            className={`
-              cajaBotones-inicio
-              animate__animated
-              ${porsentajeTotalScroll >= 95 ? "animate__backInUp" : "animate__backOutDown"}
-            `}
-          >
-            <Link to="">
-              Sobre Mí 🐧
-            </Link>
+            <div 
+              className={`
+                cajaBotones-inicio
+                animate__animated
+                ${porsentajeTotalScroll >= 75 ? "animate__backInUp" : "animate__backOutDown"}
+              `}
+            >
+              <Link to="">
+                Sobre Mí 🐧
+              </Link>
 
-            <Link to="">
-              Proyecto Cafetería ☕
-            </Link>
+              <Link to="">
+                Proyecto Cafetería ☕
+              </Link>
+            </div>
           </div>
-
 
       </section>
     </div>

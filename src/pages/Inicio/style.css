@@ -58,10 +58,16 @@ section {
     font-family: 'Morris';
 }
 
+.contenedor-supSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .cajaBotones-inicio {
-    background: rgba(245, 245, 245, 0.798);
-    width: clamp(16em,23dvw, 30dvw);
+    background: rgba(245, 245, 245, 0.65);
+    width: clamp(25em,23dvw, 30dvw);
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -75,6 +81,10 @@ section {
     background: black;
     padding: 1em 2em;
     font-size: var(--fuenteTitulo-h5);
+    transition: all 0.2s ease-in-out;
+}
+.cajaBotones-inicio a:hover {
+    background: rgba(40, 39, 39, 0.8)
 }
 
 
