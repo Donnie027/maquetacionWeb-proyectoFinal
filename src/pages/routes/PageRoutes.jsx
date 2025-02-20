@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Inicio } from "../Inicio/Inicio"
+import { Cafeteria } from "../cafeteria/Cafeteria"
 
 
 export const PageRoutes = () => {
@@ -7,6 +8,7 @@ export const PageRoutes = () => {
     <Routes>
 
       <Route path="/inicio" element={<Inicio/>}/>
+      <Route path="/cafeteria" element={<Cafeteria/>}/>
       
 
       <Route path="/" element={<Navigate to ="/inicio"/>}/>

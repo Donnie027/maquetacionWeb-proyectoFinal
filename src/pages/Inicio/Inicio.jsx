@@ -14,9 +14,14 @@ import { Link } from 'react-router-dom';
 
 export const Inicio = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const scrollY = useRef(0); // Usa useRef para evitar renders innecesarios
-  const [scrollPos, setScrollPos] = useState(0); // Solo para cambios visuales
-  const [isLoading, setIsLoading] = useState(true); // Estado para manejar el loading
+  const scrollY = useRef(0);
+  const [scrollPos, setScrollPos] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Guardar el número total de imágenes a cargar
+  const [loadedImages, setLoadedImages] = useState(0);
+  const totalImages = 6; // Total de imágenes que se deben cargar (ajustar si es necesario)
+  loadedImages
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,7 +39,7 @@ export const Inicio = () => {
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrollPos(scrollY.current); // Actualiza solo en el frame adecuado
+          setScrollPos(scrollY.current);
           ticking = false;
         });
         ticking = true;
@@ -45,25 +50,33 @@ export const Inicio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Agregar un useEffect que se dispara cuando la página se ha cargado completamente
   useEffect(() => {
     const handleWindowLoad = () => {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700); // Suaviza la transición
+      }, 700);
     };
-  
+
     if (document.readyState === 'complete') {
       handleWindowLoad();
     } else {
       window.addEventListener('load', handleWindowLoad);
     }
-  
+
     return () => window.removeEventListener('load', handleWindowLoad);
   }, []);
-  
 
-  // Calcular el tamaño de la imagen basado en la posición del scroll
+  // Función para manejar el evento onLoad de las imágenes
+  const handleImageLoad = () => {
+    setLoadedImages(prevCount => {
+      const newCount = prevCount + 1;
+      if (newCount === totalImages) {
+        setIsLoading(false); // Solo cambia a false cuando todas las imágenes se han cargado
+      }
+      return newCount;
+    });
+  };
+
   const porsentajeTotalScroll = (scrollPos * 100) / window.innerHeight;
 
   const scalePlanet = 55 + (45 * porsentajeTotalScroll) / 100;
@@ -90,7 +103,7 @@ export const Inicio = () => {
           alt="Planeta"
           loading="lazy"
           decoding="async"
-          onLoad={() => setIsLoading(false)}
+          onLoad={handleImageLoad}  // Usamos onLoad para cada imagen
           style={{
             transform: `scale(${scalePlanet / 100})`,
             transformOrigin: 'left',
@@ -104,12 +117,11 @@ export const Inicio = () => {
           alt="Superficie"
           loading="lazy"
           decoding="async"
-          onLoad={() => setIsLoading(false)}
+          onLoad={handleImageLoad}  // Usamos onLoad para cada imagen
           style={{
             transform: `translateY(${moveSurface / 25}svh)`,
           }}
         />
-
 
         <div className="cajaPresentacion">
           
@@ -118,26 +130,26 @@ export const Inicio = () => {
 
       <section className="supSection">
 
-          <div className="contenedor-supSection">
-            <h2>Proyecto Final</h2>
-            <h3>DONNIE</h3>
+        <div className="contenedor-supSection">
+          <h2>Proyecto Final</h2>
+          <h3>DONNIE</h3>
 
-            <div 
-              className={`
-                cajaBotones-inicio
-                animate__animated
-                ${porsentajeTotalScroll >= 80 ? "animate__backInUp" : "animate__backOutDown"}
-              `}
-            >
-              <Link to="">
-                Sobre Mí 🐧
-              </Link>
+          <div 
+            className={`
+              cajaBotones-inicio
+              animate__animated
+              ${porsentajeTotalScroll >= 80 ? "animate__backInUp" : "animate__backOutDown"}
+            `}
+          >
+            <Link to="">
+              Sobre Mí 🐧
+            </Link>
 
-              <Link to="">
-                Proyecto Cafetería ☕
-              </Link>
-            </div>
+            <Link to="/cafeteria">
+              Proyecto Cafetería ☕
+            </Link>
           </div>
+        </div>
 
       </section>
     </div>
