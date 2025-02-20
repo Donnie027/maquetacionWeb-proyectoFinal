@@ -1,0 +1,14 @@
+
+@font-face {
+    font-family: 'spaceman';
+    src: url('../../assets/fonts/SPACEMAN.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Morris';
+    src: url('../../assets/fonts/MorrisRomanBlack.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

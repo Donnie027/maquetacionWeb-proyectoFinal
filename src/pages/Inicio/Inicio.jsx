@@ -10,6 +10,7 @@ import superficieMobile from '../../assets/inicio/img/mobile/superficieMobile.we
 import fondoMobile from '../../assets/inicio/img/Mobile/fondoMobile.webp';
 
 import { Loader } from '../../loader/Loader';
+import { Link } from 'react-router-dom';
 
 export const Inicio = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -110,7 +111,29 @@ export const Inicio = () => {
         />
       </section>
 
-      <section className="supSection"></section>
+      <section className="supSection">
+
+          <h2>Proyecto Final</h2>
+          <h3>DONNIE</h3>
+
+          <div 
+            className={`
+              cajaBotones-inicio
+              animate__animated
+              ${porsentajeTotalScroll >= 95 ? "animate__backInUp" : "animate__backOutDown"}
+            `}
+          >
+            <Link to="">
+              Sobre Mí 🐧
+            </Link>
+
+            <Link to="">
+              Proyecto Cafetería ☕
+            </Link>
+          </div>
+
+
+      </section>
     </div>
   );
 };

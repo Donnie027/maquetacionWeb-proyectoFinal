@@ -1,0 +1,35 @@
+h1 {
+    font-size: var(--fuenteTitulo-h1);
+}
+
+h2 {
+    font-size: var(--fuenteTitulo-h2);
+}
+
+h3 {
+    font-size: var(--fuenteTitulo-h3);
+}
+
+h4 {
+    font-size: var(--fuenteTitulo-h4);
+}
+
+h5 {
+    font-size: var(--fuenteTitulo-h5);
+}
+
+h6 {
+    font-size: var(--fuenteTitulo-h6);
+}
+
+p {
+    font-size: var(--fuenteParrafo);
+}
+
+span {
+    font-size: var(--fuenteSpan);
+}
+
+input {
+    font-size: var(--fuenteInput);
+}
