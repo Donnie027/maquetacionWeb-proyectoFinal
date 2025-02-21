@@ -33,7 +33,7 @@ body {
     padding: 0;
     background-color: rgb(21, 21, 21);
     min-height: 100svh;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     text-align: center;
     color: var(--ColorTexto-uno);
 }

@@ -1,0 +1,131 @@
+
+.contenedorCafeteria {
+    width: 100%;
+}
+
+.headerCafeteria {
+    background: rgba(0, 0, 0, .9);
+    height: 10dvh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerCafeteria h2 {
+    font-family: 'coffee';
+    color: white;
+}
+
+.section-cafeteria{
+    width: 100%;
+    height: 100svh;
+}
+
+.section-cafeteria:nth-child(odd) {
+    background: #e2d9c8;
+}
+
+#inicio-cafe {
+    background: url(../../assets/cafeteria/img/fondo/fondoCafeDesktop.avif)
+    center/cover no-repeat;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    place-content: center;
+    text-align: start;
+
+    color: var(--blanco);
+}
+
+.difuminadorFondo-cafe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    backdrop-filter: blur(4px);
+    filter: brightness(60%);
+}
+.contenedorBienvenida {
+    display: flex;
+    flex-direction: column;
+    gap: 3svh;
+    margin: 0 0 0 15dvw;
+    z-index: 10;
+}
+.contenedorBienvenida button {
+    font-size: var(--fuenteTitulo-h4);
+    font-weight: 700;
+    padding: 1rem;
+    width: clamp(14ch, calc(100% / 4), calc(100% / 4) );
+    border-radius: 15px;
+    transition: all .1s ease-in-out;
+}
+.contenedorBienvenida button:hover {
+    cursor: pointer;
+    filter: brightness(79%);
+}
+.contenedorBienvenida button:active {
+    filter: brightness(100%);
+    transform: scale(.98);
+}
+
+.contenedorCafeteria header {
+    background: rgba(255, 255, 255, 0.3);
+    height: clamp(1rem, 15svh, 10svh);
+    padding: 1svh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+.contenedorCafeteria header button {
+    font-size: var(--fuenteTitulo-h5);
+    font-weight: 700;
+    padding: .3svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: clamp(16ch, calc(100% / 11), calc(100% / 10) );
+    /* width: calc(100% / 6); */
+    border-radius: 5px;
+    transition: all .1s ease-in-out;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.8);
+}
+.contenedorCafeteria header button:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.02);
+    opacity: 70%;
+}
+
+.contenedorCafeteria header .icon {
+    width: calc(100% / 5);
+    aspect-ratio: 1/1;
+}
+
+.contenedorCafeteria header #hogar {background: url(../../assets/cafeteria/icons/hogar.png) no-repeat center/contain;}
+.contenedorCafeteria header #cafe {background: url(../../assets/cafeteria/icons/cafe.png) no-repeat center/contain;}
+.contenedorCafeteria header #rebanada {background: url(../../assets/cafeteria/icons/rebanada.png) no-repeat center/contain;}
+
+@media (width <= 768px) {
+    #inicio-cafe {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .contenedorBienvenida {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0;
+        
+    }
+}
