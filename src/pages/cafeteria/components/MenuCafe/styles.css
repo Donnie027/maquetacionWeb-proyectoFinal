@@ -1,0 +1,46 @@
+/* Skeleton Loader */
+.skeleton {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-box {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #e0e0e0;
+    border-radius: 12px;
+    position: relative;
+}
+
+.skeleton-line {
+    height: 16px;
+    background: #e0e0e0;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.skeleton-line.short {
+    width: 60%;
+}
+
+.skeleton::after,
+.skeleton-box::after,
+.skeleton-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-150px);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

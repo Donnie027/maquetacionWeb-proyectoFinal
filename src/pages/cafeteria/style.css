@@ -3,6 +3,19 @@
     width: 100%;
 }
 
+.section-cafeteria{
+    width: 100%;
+    min-height: 100svh;
+}
+
+.section-cafeteria:nth-child(odd) {
+    background: #e2d9c8;
+}
+.section-cafeteria:nth-child(even) {
+    background: #f1f0ee;
+}
+
+
 .headerCafeteria {
     background: rgba(0, 0, 0, .9);
     height: 10dvh;
@@ -15,18 +28,6 @@
 .headerCafeteria h2 {
     font-family: 'coffee';
     color: white;
-}
-
-.section-cafeteria{
-    width: 100%;
-    height: 100svh;
-}
-
-.section-cafeteria:nth-child(odd) {
-    background: #e2d9c8;
-}
-.section-cafeteria:nth-child(even) {
-    background: #f1f0ee;
 }
 
 #inicio-cafe {
@@ -74,7 +75,6 @@
 }
 
 .contenedorCafeteria header {
-    /* background: rgba(255, 255, 255, 0.3); */
     background: #61411a8f;
     height: clamp(1rem, 15svh, 10svh);
     padding: 1svh;
@@ -115,6 +115,38 @@
 .contenedorCafeteria header #cafe {background: url(../../assets/cafeteria/icons/cafe.png) no-repeat center/contain;}
 .contenedorCafeteria header #rebanada {background: url(../../assets/cafeteria/icons/rebanada.png) no-repeat center/contain;}
 
+#menu-cafe {
+    padding: 1svh 4svw;
+}
+#menu-cafe .contenedor-menu-cafe {
+    padding-top: 10svh;
+}
+#menu-cafe .cartas-cafe {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+#menu-cafe .carta-cafe {
+    width: 100%;
+    padding: 2%;
+    background: white;
+    border-radius: 16px;
+}
+#menu-cafe .carta-cafe .contenedor-cafe-img{
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: gray;
+    border-radius: 12px;
+    overflow: hidden;
+}
+#menu-cafe .contenedor-cafe-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 @media (width <= 768px) {
     #inicio-cafe {
         display: flex;
@@ -133,3 +165,9 @@
         
     }
 }
+
+@media (min-width: 1024px) {
+    #menu-cafe .cartas-cafe{
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
