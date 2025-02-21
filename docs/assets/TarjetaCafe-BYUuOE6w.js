@@ -1,0 +1,1 @@
+import{j as e}from"./index-DJik7lBO.js";const t=({imagen:a,nombre:s,precio:c})=>e.jsxs("li",{className:"carta-cafe",children:[e.jsx("div",{className:"contenedor-cafe-img",children:e.jsx("img",{src:a,alt:`Imagen de ${s}`})}),e.jsxs("div",{className:"contenedor-cafe-texto",children:[e.jsx("h5",{children:s}),e.jsxs("h6",{children:["$",c]})]})]});export{t as TarjetaCafe};
