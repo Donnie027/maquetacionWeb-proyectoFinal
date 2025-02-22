@@ -141,10 +141,6 @@ export const Inicio = () => {
               ${porsentajeTotalScroll >= 80 ? "animate__backInUp" : "animate__backOutDown"}
             `}
           >
-            <Link to="">
-              Sobre Mí 🐧
-            </Link>
-
             <Link to="/cafeteria">
               Proyecto Cafetería ☕
             </Link>
