@@ -18,9 +18,8 @@ export const Inicio = () => {
   const [scrollPos, setScrollPos] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Guardar el número total de imágenes a cargar
   const [loadedImages, setLoadedImages] = useState(0);
-  const totalImages = 6; // Total de imágenes que se deben cargar (ajustar si es necesario)
+  const totalImages = 6;
   loadedImages
 
   useEffect(() => {
@@ -66,12 +65,11 @@ export const Inicio = () => {
     return () => window.removeEventListener('load', handleWindowLoad);
   }, []);
 
-  // Función para manejar el evento onLoad de las imágenes
   const handleImageLoad = () => {
     setLoadedImages(prevCount => {
       const newCount = prevCount + 1;
       if (newCount === totalImages) {
-        setIsLoading(false); // Solo cambia a false cuando todas las imágenes se han cargado
+        setIsLoading(false); 
       }
       return newCount;
     });
@@ -86,7 +84,7 @@ export const Inicio = () => {
 
   return (
     <div className="inicioContenedor">
-      {isLoading && <Loader />} {/* Muestra el loader mientras se carga la página */}
+      {isLoading && <Loader />}
       
       <section
         className="fondoParallax"
@@ -103,7 +101,7 @@ export const Inicio = () => {
           alt="Planeta"
           loading="lazy"
           decoding="async"
-          onLoad={handleImageLoad}  // Usamos onLoad para cada imagen
+          onLoad={handleImageLoad}
           style={{
             transform: `scale(${scalePlanet / 100})`,
             transformOrigin: 'left',
@@ -117,7 +115,7 @@ export const Inicio = () => {
           alt="Superficie"
           loading="lazy"
           decoding="async"
-          onLoad={handleImageLoad}  // Usamos onLoad para cada imagen
+          onLoad={handleImageLoad}
           style={{
             transform: `translateY(${moveSurface / 25}svh)`,
           }}

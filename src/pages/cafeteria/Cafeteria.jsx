@@ -5,7 +5,6 @@ import './style.css';
 
 export const Cafeteria = () => {
   
-  // Función para el desplazamiento suave
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -17,11 +16,6 @@ export const Cafeteria = () => {
 
   return (
     <div className="contenedorCafeteria">
-        {/* <header className='headerCafeteria'>
-            <h2>Café con leche</h2>
-            <button onClick={() => handleScroll('inicio')}>Inicio</button>
-            <button onClick={() => handleScroll('menu-postres')}>Postres</button>
-        </header> */}
 
         <section className='section-cafeteria' id="inicio-cafe">
             <div className="difuminadorFondo-cafe"></div>
