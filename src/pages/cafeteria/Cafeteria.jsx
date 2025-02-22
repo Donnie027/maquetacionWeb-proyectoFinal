@@ -1,5 +1,6 @@
 import { HeaderCafeteria } from './components/Header/HeaderCafeteria';
 import { MenuCafe } from './components/MenuCafe/MenuCafe';
+import { MenuPostre } from './components/MenuCafe/MenuPostre';
 import './style.css';
 
 export const Cafeteria = () => {
@@ -47,11 +48,13 @@ export const Cafeteria = () => {
         </section>
 
         <section className='section-cafeteria' id="menu-postres">
-            {/* Contenido del menú de postres */}
-        </section>
+        <div className="contenedor-menu-cafe">
+                <h2>Postres</h2>
 
-        <section className='section-cafeteria'>
-            {/* Otro contenido */}
+                <ul className="cartas-cafe">
+                    <MenuPostre/>
+                </ul>
+            </div>
         </section>
     </div>
   );
